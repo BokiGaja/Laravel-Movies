@@ -4,12 +4,12 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="d-flex flex-row">
         @include('inc.sidebar')
-            <main role="main col-md-9" class="d-flex flex-row">
+            <main role="main col-md-9" class="row">
                 @foreach($movies as $movie)
-                    <div class="card" style="width: 18rem; background: whitesmoke; border-radius: 20%; margin-left: 20px">
-                        <div class="card-body">
+                    <div class="card" style="width: 18rem; background: whitesmoke; border-radius: 20%; margin-left: 20px; margin-top: 10px">
+                        <div class="card-body" style="text-align: center">
                             <h2 class="card-title">{{ $movie->title }}</h2>
                             Genre: <p class="card-text">{{ $movie->genre }}</p>
                             Story: <p class="card-text">{{ str_limit($movie->storyline, $limit = 30, $end='...') }}</p>
