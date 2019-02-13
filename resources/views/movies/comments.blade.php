@@ -13,9 +13,7 @@
     <form  method="POST" action="{{ route(('movies.comment'), ['id' => $movie->id ]) }}">
         @csrf
         <div class="form-group row">
-            <textarea id="textarea" name="content" cols="40" rows="5" class="form-control
-            {{ $errors->has('content') ? 'is-invalid' : '' }}" placeholder="Comment">{{ old('content') }}</textarea>
-            @include('partials.invalid-feedback', ['field' => 'content'])
+            <textarea id="textarea" name="content" cols="40" rows="5" class="form-control" placeholder="Comment" required>{{ old('content') }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

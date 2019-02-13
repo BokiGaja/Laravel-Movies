@@ -10,7 +10,8 @@
         Director: {{ $movie->director }} <br>
         Year: {{ $movie->year }} <br>
         Storyline: {{ $movie->storyline }}  <br>
-        <a href="javascript:history.back()" class="btn btn-primary">Go back</a>
+        <a href="/movies" class="btn btn-primary">Go back</a>
+        <a href="/movies/{{ $movie->id }}/edit" class="btn btn-danger">Edit</a>
     </div>
     @include('movies.comments')
 @endsection

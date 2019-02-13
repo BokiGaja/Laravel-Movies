@@ -4,9 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="pb-3 mb-4 font-italic border-bottom" style="text-align: center">
-            Create movie
-        </h1>
+        <h1 class="pb-3 mb-4 font-italic border-bottom" style="text-align: center">Create movie</h1>
         <form method="POST" action="/movies">
             @csrf
             <div class="form-group row">
@@ -21,22 +19,14 @@
             </div>
             <div class="form-group row">
                 <div class="col-8">
-                    {{-- is-invalid is imporatnt, it will connect with invalid-feedback from blade --}}
-                    <input id="text" name="genre" type="text" class="form-control
-                        {{ $errors->has('genre') ? 'is-invalid' : '' }}"
-                           placeholder="Genre" value="{{ old('genre') }}">
-                    {{-- Validation, we pass to our blade name of our input--}}
-                    @include('partials.invalid-feedback', ['field' => 'genre'])
+                    {{-- Simpler way if you just need your input to be required --}}
+                    <input type="text" name="genre" class="form-control" placeholder="Genre" required value="{{ old('genre') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-8">
-                    {{-- is-invalid is imporatnt, it will connect with invalid-feedback from blade --}}
-                    <input id="text" name="director" type="text" class="form-control
-                        {{ $errors->has('director') ? 'is-invalid' : '' }}"
-                           placeholder="Director" value="{{ old('director') }}">
-                    {{-- Validation, we pass to our blade name of our input--}}
-                    @include('partials.invalid-feedback', ['field' => 'director'])
+                    {{-- Simpler way if you just need your input to be required, by not so safe --}}
+                    <input type="text" name="director" class="form-control" placeholder="Director" required value="{{ old('director') }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -45,7 +35,7 @@
                     <input id="text" name="year" type="number" class="form-control
                         {{ $errors->has('year') ? 'is-invalid' : '' }}"
                            placeholder="Year" value="{{ old('year') }}">
-                    {{-- Validation, we pass to our blade name of our input--}}
+                     {{--Validation, we pass to our blade name of our input--}}
                     @include('partials.invalid-feedback', ['field' => 'year'])
                 </div>
             </div>

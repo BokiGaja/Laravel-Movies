@@ -25,29 +25,50 @@ class MoviesController extends Controller
         return view('movies.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+
+        Movie::create(request()->validate([
             'title' => 'required',
             'genre' => 'required',
             'director' => 'required',
-            'year' => 'required|numeric|between:1900,\'.date(\'Y\')',
+            'year' => 'required|numeric|between:1900,'.date("Y"),
             'storyline' => 'required|max:1000'
-        ]);
-        Movie::create($request->all());
+        ]));
         return redirect(route('movies.index'));
     }
 
-    public function addComment(Request $request, $id)
+    public function addComment($id)
     {
-        $request->validate([
-            'content'=>'required'
-        ]);
         Comment::create([
             'movie_id' => $id,
-            'content' => $request->content
+            'content' => request()->content
         ]);
 
         return redirect()->back();
+    }
+
+    public function edit(Movie $movie)
+    {
+        return view('movies.edit', compact('movie'));
+    }
+
+    public function update(Movie $movie)
+    {
+        $movie->update(request()->validate([
+            'title' => 'required',
+            'genre' => 'required',
+            'director' => 'required',
+            'year' => 'required|numeric|between:1900,'.date("Y"),
+            'storyline' => 'required|max:1000'
+        ]));
+
+        return redirect('/movies/'.$movie->id);
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();
+        return redirect('movies');
     }
 }
